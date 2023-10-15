@@ -1,0 +1,20 @@
+name: Validate
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Install Prettier
+        run: npm install --global prettier
+      - name: Check formatting
+        run: prettier --check .
