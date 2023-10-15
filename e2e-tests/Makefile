@@ -1,0 +1,3 @@
+.PHONY: test
+test:
+	cd test && go test -count 1 -timeout 30m -p 1 -v ./...
