@@ -1,0 +1,11 @@
+{
+  "name": "integration-tests",
+  "main": "api.mjs",
+  "scripts": {
+    "start": "node api.mjs"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "serverless-http": "^3.0.1"
+  }
+}
