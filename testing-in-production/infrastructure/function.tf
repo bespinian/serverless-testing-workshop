@@ -9,7 +9,7 @@ resource "aws_lambda_function" "my_function" {
 
   environment {
     variables = {
-      JOKE_TABLE_SUFFIX = "${var.resource_suffix}"
+      JOKE_TABLE_SUFFIX = var.resource_suffix
     }
   }
 
