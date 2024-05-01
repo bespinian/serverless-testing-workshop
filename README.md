@@ -2,7 +2,7 @@
 
 Testing is crucial in any software project. When shifting to a serverless world, we need to accept and embrace multiple paradigm shifts, which also affect how we can test our applications. By doing so on multiple layers, we can drastically increase our confidence of releasing code and having minimal impact on the service availability and stability of the software we develop.
 
-This workshop consists of multiple independent modules which can be done in any order. The modules are
+This workshop consists of multiple independent modules which can be done in any order. The modules are:
 
 - [Unit Tests](#unit-tests)
 - [Local Testing](#local-testing)
@@ -50,7 +50,10 @@ In Node.js, [Express](https://expressjs.com/) is a popular framework for buildin
 1. Read up on [`serverless-http`](https://github.com/dougmoscrop/serverless-http) and understand how it works
 1. Check out the example application in [local-testing](./local-testing) and investigate how it uses the serverless-http framework
 1. Run the application locally by running `npm install` and then `npm start`
-1. Send an HTTP request to the app (e.g. using `curl localhost:8080`)
+1. Send an HTTP request to the app
+   ```shell
+   curl -X GET localhost:8080 -H 'Content-Type:application/json' -d '{"name":"Alice"}'
+   ```
 1. Deploy the app to AWS Lambda and hook it up with API Gateway.
 1. Research how you could do something similar with the web framework and programming language of your choice
 
@@ -63,12 +66,12 @@ Integration testing is crucial to being confident that your application behaves 
 > Requirements: You need to have either [Docker](https://www.docker.com/) (including [docker-compose](https://github.com/docker/compose)) or [Podman](https://podman.io/) (including [podman-compose](https://github.com/containers/podman-compose)) installed.
 
 1. Take a look at the introduction to LocalStack by reading their [overview documentation](https://docs.localstack.cloud/overview/).
-1. Investigate the `docker-compose.yml` file in the [`integration-tests`](./integration-tests) directory and understand how it sets up
+1. Investigate the `docker-compose.yml` file in the [`integration-tests`](./integration-tests) directory and understand how it's set up
 1. Run `docker compose up -d` or (`PODMAN_COMPOSE_PROVIDER=podman-compose podman compose up -d` for Podman) and visit [localhost:4566/\_localstack/health](http://localhost:4566/_localstack/health) to verify all services are available.
 1. Run `aws --endpoint-url http://localhost:4566 dynamodb create-table --table-name jokes --attribute-definitions AttributeName=ID,AttributeType=S --key-schema AttributeName=ID,KeyType=HASH --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1` to create the `jokes` table locally.
 1. Run `aws --endpoint-url http://localhost:4566 dynamodb list-tables` to verify it has been created.
 1. Run `aws --endpoint-url http://localhost:4566 dynamodb put-item --table-name jokes --item '{"ID":{"S":"1"},"Text":{"S":"Hello funny world"}}'` to insert a joke into the newly created table.
-1. Run `aws --endpoint-url http://locahlost:4566 dynamodb scan --table-name jokes` to verify it has been inserted.
+1. Run `aws --endpoint-url http://localhost:4566 dynamodb scan --table-name jokes` to verify it has been inserted.
 
 ## E2E Tests
 
@@ -114,7 +117,7 @@ Many FaaS platforms allow performing canary deployments. By doing so, we don't r
 1. Change something about the function code and apply again to publish a new version (notice the `publish: true` flag in `function.tf`)
 1. Visit the [CodeDeploy UI](https://console.aws.amazon.com/codesuite/codedeploy/applications)
 1. Choose your application
-1. Click "Create deployment" and choose "Use AppSpec editor" with "YAML"
+1. Click "Create deployment" and pick "Use AppSpec editor" with "YAML"
 1. Enter the following code into the text field (replacing `RESOURCE_SUFFIX` with the suffix you chose):
 
    ```yml

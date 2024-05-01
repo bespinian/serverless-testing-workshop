@@ -1,7 +1,7 @@
 resource "aws_lambda_function" "jokester" {
   function_name    = "${local.application}${var.resource_suffix}"
   filename         = data.archive_file.jokester_code.output_path
-  runtime          = "nodejs18.x"
+  runtime          = "nodejs20.x"
   handler          = "index.handler"
   source_code_hash = data.archive_file.jokester_code.output_base64sha256
   role             = aws_iam_role.lambda_exec.arn
