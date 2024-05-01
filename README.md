@@ -2,7 +2,7 @@
 
 Testing is crucial in any software project. When shifting to a serverless world, we need to accept and embrace multiple paradigm shifts, which also affect how we can test our applications. By doing so on multiple layers, we can drastically increase our confidence of releasing code and having minimal impact on the service availability and stability of the software we develop.
 
-This workshop consists of multiple independent modules which can be done in any order. The modules are
+This workshop consists of multiple independent modules which can be done in any order. The modules are:
 
 - [Unit Tests](#unit-tests)
 - [Local Testing](#local-testing)
@@ -50,7 +50,7 @@ In Node.js, [Express](https://expressjs.com/) is a popular framework for buildin
 1. Read up on [`serverless-http`](https://github.com/dougmoscrop/serverless-http) and understand how it works
 1. Check out the example application in [local-testing](./local-testing) and investigate how it uses the serverless-http framework
 1. Run the application locally by running `npm install` and then `npm start`
-1. Send an HTTP request to the app (e.g. using `curl localhost:8080`)
+1. Send an HTTP request to the app (e.g., using `curl localhost:8080`)
 1. Deploy the app to AWS Lambda and hook it up with API Gateway.
 1. Research how you could do something similar with the web framework and programming language of your choice
 
@@ -114,7 +114,7 @@ Many FaaS platforms allow performing canary deployments. By doing so, we don't r
 1. Change something about the function code and apply again to publish a new version (notice the `publish: true` flag in `function.tf`)
 1. Visit the [CodeDeploy UI](https://console.aws.amazon.com/codesuite/codedeploy/applications)
 1. Choose your application
-1. Click "Create deployment" and choose "Use AppSpec editor" with "YAML"
+1. Click "Create deployment" and pick "Use AppSpec editor" with "YAML"
 1. Enter the following code into the text field (replacing `RESOURCE_SUFFIX` with the suffix you chose):
 
    ```yml
